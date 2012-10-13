@@ -1,5 +1,6 @@
 using System;
 using MemBus.Subscribing;
+using System.Threading.Tasks;
 
 namespace MemBus
 {
@@ -12,6 +13,15 @@ namespace MemBus
         /// Publish a message
         /// </summary>
         void Publish(object message);
+
+        #if WINRT
+        /// <summary>
+        /// Publish a message in an awaitable fashion. This will short-circuit the conventional
+        /// publishing and subscribing components and uses an awaitable version of the 
+        /// <see cref="SequentialPublisher"/>
+        /// </summary>
+        Task PublishAsync(object message);
+        #endif
     }
 
     /// <summary>

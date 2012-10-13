@@ -215,6 +215,7 @@
     </Compile>
     <Compile Include="Frame\AssertExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publishing\Awaitable_publish.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

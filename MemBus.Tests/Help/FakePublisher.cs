@@ -15,6 +15,13 @@ namespace MemBus.Tests.Help
             Message = message;
         }
 
+        #if WINRT
+        public Task PublishAsync(object message)
+        {
+            return new Task(()=> Message = message);
+        }
+        #endif
+
         public object Message { get; set; }
 
         public void VerifyMessageIsOfType<T>()

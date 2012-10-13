@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MemBus.Setup;
 using MemBus.Support;
+using System.Threading.Tasks;
 
 namespace MemBus.Publishing
 {
@@ -26,6 +27,16 @@ namespace MemBus.Publishing
                 break;
             }
         }
+
+        #if WINRT
+
+        public async Task LookAtAsync(PublishToken token) 
+        {
+            IAsyncPublishPipelineMember publisher = new SequentialPublisher();
+            await publisher.LookAtAsync(token);
+        }
+
+        #endif
 
         void IConfigurablePublishing.DefaultPublishPipeline(params IPublishPipelineMember[] publishPipelineMembers)
         {

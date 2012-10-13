@@ -3,6 +3,7 @@ using MemBus.Publishing;
 using MemBus.Setup;
 using MemBus.Subscribing;
 using MemBus.Support;
+using System.Threading.Tasks;
 
 namespace MemBus
 {
@@ -59,6 +60,18 @@ namespace MemBus
             var t = new PublishToken(message, subs);
             _publishChainCasing.LookAt(t);
         }
+
+        #if WINRT
+
+        public async Task PublishAsync(object message)
+        {
+            CheckDisposed();
+            var subs = _subscriber.GetSubscriptionsFor(message);
+            var t = new PublishToken(message, subs);
+            await _publishChainCasing.LookAtAsync(t);
+        }
+
+        #endif
 
         public IDisposable Subscribe<M>(Action<M> subscription)
         {
