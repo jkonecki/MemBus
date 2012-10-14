@@ -21,6 +21,7 @@ namespace MemBus
         internal Bus()
         {
             _services.Add<IPublisher>(this);
+            _services.Add(new ObservableRelay(this));
             _publishChainCasing = new PublishChainCasing(this);
             _subscriber = new Subscriber(_services);
             _disposer = new DisposeContainer { _publishChainCasing, _subscriber, (IDisposable)_services };
@@ -61,6 +62,12 @@ namespace MemBus
             _publishChainCasing.LookAt(t);
         }
 
+        public IDisposable Publish<M>(IObservable<M> observable)
+        {
+            CheckDisposed();
+            return _services.Get<ObservableRelay>().Connect(observable);
+        }
+
         #if WINRT
 
         public async Task PublishAsync(object message)
@@ -73,6 +80,13 @@ namespace MemBus
 
         #endif
 
+        #if !WINRT
+        public IDisposable Subscribe<M>(Action<M> subscription, Action<SubscriptionCustomizer<M>> customization)
+        {
+            return _subscriber.Subscribe(subscription, customization);
+        }
+        #endif
+
         public IDisposable Subscribe<M>(Action<M> subscription)
         {
             return _subscriber.Subscribe(subscription);
@@ -82,14 +96,6 @@ namespace MemBus
         {
             return _subscriber.Subscribe(subscriber);
         }
-
-        #if !WINRT
-        public IDisposable Subscribe<M>(Action<M> subscription, Action<SubscriptionCustomizer<M>> customization)
-        {
-            return _subscriber.Subscribe(subscription, customization);
-        }
-        #endif
-
 
         public IDisposable Subscribe<M>(Action<M> subscription, ISubscriptionShaper customization)
         {

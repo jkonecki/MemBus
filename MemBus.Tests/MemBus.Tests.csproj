@@ -77,6 +77,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Publishing\Using_publishing_methods.cs" />
+    <Compile Include="Rx\Observable_as_publish.cs" />
     <Compile Include="Subscribing\Using_predicate_based_subscribing.cs" />
     <Compile Include="Subscribing\Using_SubscriptionAdapter_Service.cs" />
     <Compile Include="Rx\When_MemBus_is_used_as_Observable.cs" />

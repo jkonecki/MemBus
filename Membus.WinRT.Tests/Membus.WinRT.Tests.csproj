@@ -183,6 +183,9 @@
     <Compile Include="..\MemBus.Tests\Publishing\Using_Publish_Pipeline.cs">
       <Link>Publishing\Using_Publish_Pipeline.cs</Link>
     </Compile>
+    <Compile Include="..\MemBus.Tests\Rx\Observable_as_publish.cs">
+      <Link>Rx\Observable_as_publish.cs</Link>
+    </Compile>
     <Compile Include="..\MemBus.Tests\Rx\When_MemBus_is_used_as_Observable.cs">
       <Link>Rx\When_MemBus_is_used_as_Observable.cs</Link>
     </Compile>

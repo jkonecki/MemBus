@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MemBus.Tests.Help
 {
-    public class FakePublisher : IPublisher
+    public class FakePublisher : IPublisher, IDisposable
     {
         public void Publish(object message)
         {
@@ -29,5 +29,13 @@ namespace MemBus.Tests.Help
             Message.ShouldNotBeNull();
             Message.ShouldBeOfType<T>();
         }
+
+
+        public IDisposable Publish<M>(IObservable<M> observable)
+        {
+            return this;
+        }
+
+        void IDisposable.Dispose() { }
     }
 }

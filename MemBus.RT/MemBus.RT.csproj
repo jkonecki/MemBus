@@ -138,6 +138,9 @@
     <Compile Include="..\MemBus\MessageObservable.cs">
       <Link>MessageObservable.cs</Link>
     </Compile>
+    <Compile Include="..\MemBus\Messages\MessageStreamCompleted.cs">
+      <Link>Messages\MessageStreamCompleted.cs</Link>
+    </Compile>
     <Compile Include="..\MemBus\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -158,6 +161,9 @@
     </Compile>
     <Compile Include="..\MemBus\Publishing\IPublishPipelineMember.cs">
       <Link>Publishing\IPublishPipelineMember.cs</Link>
+    </Compile>
+    <Compile Include="..\MemBus\Publishing\ObservableRelay.cs">
+      <Link>Publishing\ObservableRelay.cs</Link>
     </Compile>
     <Compile Include="..\MemBus\Publishing\ParallelBlockingPublisher.cs">
       <Link>Publishing\ParallelBlockingPublisher.cs</Link>
